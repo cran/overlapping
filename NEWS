@@ -1,7 +1,11 @@
+  CHANGES IN overlapping VERSION 1.2
+
+CHANGES
+  * change Depends: R (>= 3.2.0)
+
   CHANGES IN overlapping VERSION 1.1
 
 CHANGES
   * fix a bug error in function final.plot 
-
 
 
