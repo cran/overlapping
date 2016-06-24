@@ -20,7 +20,7 @@ overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
   dd$xclass <- cut(dd$x,seq(min(dd$x),max(dd$x),length=nbins),include.lowest=TRUE)
   dd$xnum <- cutnumeric(dd$x)
   
-  OV <- DD <- NULL
+  OV <- DD <- xpoints <- NULL
   for (i1 in 1:(length(x)-1)) {
     for (i2 in (i1+1):(length(x))) {
       Do <- order(maxX)
@@ -70,9 +70,10 @@ overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
       d1$k <- d2$k <- names(ov) 
       DD <- rbind(DD,d1,d2)
       DD <- DD[,c("x","y","j","xclass","xnum","dominance","w","k")]
+      xpoints <- c(xpoints,XNUM[change])
     }
   }
-  
+
   if (plot) {
     has.lattice <- requireNamespace("lattice")
     if (has.lattice) {
@@ -84,5 +85,5 @@ overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
     
   }
   
-  return(list(DD=DD,OV=OV))
+  return(list(DD=DD,OV=OV,xpoints=xpoints))
 }

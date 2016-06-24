@@ -37,6 +37,7 @@ It returns a list containing the following components:
   \code{k}, label indicating which distributions are compared %etichetta per il confronto, per \code{default} viene ricavato dai nomi degli oggetti nella lista di input.
   }
   \item{OV }{Estimates of overlapped areas relative to each couple of distributions.}
+  \item{xpoints }{Abscissas of intersection points among the density curves.}
 %% ...
 }
 %\references{

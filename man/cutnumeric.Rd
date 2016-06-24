@@ -23,7 +23,7 @@ It calls the \code{cut} function, and then converts factor classess in numeric c
 %e quindi converte le classi ottenute (di tipo factor) in classi numeriche assegnando il valore centrale dell'intervallo. 
 }
 \value{
-It returns a numerical vector, in which values are the central points of classes obtained by the function \code{cut}.
+It returns a numerical vector. The values are the central points of classes obtained by the function \code{cut}.
 }
 %\references{
 %% ~put references to the literature/web site here ~

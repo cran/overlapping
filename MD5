@@ -1,9 +1,9 @@
-2a8fed389d50934f32acbb340e0e3324 *DESCRIPTION
+d5f9d18c49cb5acf568daa92475f07e0 *DESCRIPTION
 84363028f48ff682e276ac073774e8eb *NAMESPACE
-34a01f8dea7dcc947b59e89adf956f98 *NEWS
+8263b4522edd1ceb6e1ec6286f716a65 *NEWS
 aad2d58823413c1f14d8832451939b7e *R/cutnumeric.R
-28ea2e5c96c10ddc652718ba96375e8a *R/final.plot.R
-def8ff5969fa2773101111649f87cf40 *R/overlap.R
-5cf0a05bef216233c145d5afa50b1b0b *man/cutnumeric.Rd
+02c564d048199700cc592862723482a8 *R/final.plot.R
+1bedf77a66802dbdbfa466b1f64690d9 *R/overlap.R
+454421a20b1c48a04ce900d1ef7599a3 *man/cutnumeric.Rd
 34773c509bc3f9f9dac4cb19ba6f6dea *man/final.plot.Rd
-373a1cd40ee89f2d6cc369e19d94c13d *man/overlap.Rd
+b2802ce24db9261a8a3f87b05c943781 *man/overlap.Rd
