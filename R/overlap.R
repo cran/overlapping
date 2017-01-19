@@ -1,7 +1,8 @@
 #rm(list=ls())
-#source("/home/el/lavori/Rdevel/overlapping1.1/R/cutnumeric.R")
-#x <- list(X1=rnorm(10,-5),X2=rt(10,8),X3=rchisq(10,2))
-#nbins <- 20
+#source("/home/el/lavori/Rdevel/overlapping_1.4.0/R/cutnumeric.R")
+#rr <- rnorm(10)
+#x <- list(X1=rr,X2=rt(10,8),X3=rchisq(10,2),X4=rr)
+#nbins <- 20; i1 <- 1; i2 <- i1+1
 #load("~/lavori/Rdevel/overlappingTest/provaoverlap.rda")
 overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
   if (is.null(names(x))) names(x) <- paste("Y",1:length(x),sep="")
@@ -11,26 +12,27 @@ overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
     dj <- density(x[[j]],n=nbins)
     maxXj <- dj$x[which(dj$y==max(dj$y))]
     maxYj <- max(dj$y) 
-    dd <- rbind(dd,cbind(dj$x,dj$y,j))
+    ddd <- data.frame(x=dj$x,y=dj$y,j=names(x)[j])
+    dd <- rbind(dd,ddd)
     maxX <- c(maxX,maxXj)
     maxY <- c(maxY,maxYj)
   }
-  dd <- data.frame(dd)
-  colnames(dd)[1:2] <- c("x","y")
   dd$xclass <- cut(dd$x,seq(min(dd$x),max(dd$x),length=nbins),include.lowest=TRUE)
   dd$xnum <- cutnumeric(dd$x)
   
   OV <- DD <- xpoints <- NULL
   for (i1 in 1:(length(x)-1)) {
     for (i2 in (i1+1):(length(x))) {
-      Do <- order(maxX)
-      Dx <- sort(maxX)
-      Dy <- maxY[order(maxX)]
+      (Do <- order(maxX))
+      (Dx <- sort(maxX))
+      (Dy <- maxY[order(maxX)])
       
-      max1 <- Dx[i1]
-      max2 <- Dx[i2]
-      d1 <- dd[dd$j==Do[i1],]
-      d2 <- dd[dd$j==Do[i2],]
+      (max1 <- Dx[i1])
+      (max2 <- Dx[i2])
+      #d1 <- dd[dd$j==Do[i1],]
+      #d2 <- dd[dd$j==Do[i2],]
+      (d1 <- dd[dd$j==names(x)[Do[i1]],])
+      (d2 <- dd[dd$j==names(x)[Do[i2]],])
       
       if (max1>max2) {
         tram <- d2; d2 <- d1; d1 <- tram
@@ -42,19 +44,30 @@ overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
       dominance <- rep(NA,length(XNUM))
       change <- NULL
       for (h in 1:length(XNUM)) {
-        Y1 <- max(d1$y[d1$xnum==XNUM[h]]) # possible warnings here
-        Y2 <- max(d2$y[d2$xnum==XNUM[h]]) # possible warnings here
+        if (length(d1$y[d1$xnum==XNUM[h]])>0) {
+          Y1 <- max(d1$y[d1$xnum==XNUM[h]]) # possible warnings here          
+        } else {
+          Y1 <- -Inf
+        }
+        if (length(d2$y[d2$xnum==XNUM[h]])>0) {
+          Y2 <- max(d2$y[d2$xnum==XNUM[h]]) # possible warnings here  
+        } else {
+          Y2 <- -Inf
+        }
+        
         dominance[h] <- ifelse(Y1>Y2,1,2)
         if (h>1) {
           if (dominance[h]!=dominance[h-1]) change <- c(change,h-1)
         }
       }
-      
-      DOM <- data.frame(xnum=XNUM,dominance)
+  
+      (DOM <- data.frame(xnum=XNUM,dominance))
       d1 <- merge(d1,DOM,by="xnum"); d1$w <- ifelse(d1$dominance==1,0,1)
       d2 <- merge(d2,DOM,by="xnum"); d2$w <- ifelse(d2$dominance==2,0,1)
       (ov <- sum(abs(d1$x)*d1$y*d1$w)/sum(abs(d1$x)*d1$y)+sum(abs(d2$x)*d2$y*d2$w)/sum(abs(d2$x)*d2$y))
-      names(ov) <- paste(names(x)[i1],names(x)[i2],sep="-",collapse="")
+      #names(ov) <- paste(names(x)[i1],names(x)[i2],sep="-",collapse="")
+      NOMI <- c(as.character(unique(d1$j)),as.character(unique(d2$j)))
+      names(ov) <- paste(sort(NOMI),collapse="-")
       
       if (partial.plot) {
         plot(d1$xnum,d1$y,xlim=XLIM,ylim=YLIM,lwd=2,type="l",main=names(ov))
@@ -75,12 +88,13 @@ overlap <- function(x,nbins=1000,plot=FALSE,partial.plot=FALSE) {
   }
 
   if (plot) {
-    has.lattice <- requireNamespace("lattice")
-    if (has.lattice) {
-      if (!isNamespaceLoaded("lattice")) attachNamespace("lattice")
-      print(final.plot(DD,OV))
+    #has.lattice <- requireNamespace("lattice")
+    has.ggplot2 <- requireNamespace("ggplot2")
+    if (has.ggplot2) {
+      if (!isNamespaceLoaded("ggplot2")) attachNamespace("ggplot")
+      print(final.plot(x,OV))
     } else {
-      warning("package lattice is missing.")
+      warning("package ggplot2 is missing.")
     }
     
   }

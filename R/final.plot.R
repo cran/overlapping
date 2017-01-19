@@ -1,23 +1,34 @@
 #rm(list=ls())
-#source("/home/el/lavori/Rdevel/overlapping_1.3/R/cutnumeric.R")
-#source("/home/el/lavori/Rdevel/overlapping_1.3/R/overlap.R")
+#source("/home/el/lavori/Rdevel/overlapping_1.4.0/R/cutnumeric.R")
+#source("/home/el/lavori/Rdevel/overlapping_1.4.0/R/overlap.R")
+#rr <- rnorm(100)
+#x <- list(X1=rr,X2=rt(50,8),X3=rchisq(80,2),X4=rr)
+#out <- overlap(x)
+#OV <- out$OV
 #load("~/lavori/Rdevel/testoverlapping/data/testfinalplot.rda")
-final.plot <- function(DD,OV) {
-  
-  xx <- yy <- list()
-  JJ <- unique(DD$k)
-  index <- order(JJ)
-  for (i in JJ) {
-    xxx <- DD$x[(DD$k==i)&(DD$w==1)]
-    yyy <- DD$y[(DD$k==i)&(DD$w==1)]
-    xx <- c(xx,list(sort(xxx)))
-    yy <- c(yy,list(yyy[order(xxx)]))
+final.plot <- function(x,OV=NULL) {
+  has.ggplot2 <- requireNamespace("ggplot2")
+  if (has.ggplot2) {
+    if (!isNamespaceLoaded("ggplot2")) attachNamespace("ggplot")
+    AREA <- NULL
+    for (i1 in 1:(length(x)-1)) {
+      for (i2 in (i1+1):(length(x))) {
+        A <- data.frame(x=x[[i1]],group=names(x)[i1],k=paste(names(x)[i1],names(x)[i2],sep="-",collapse=""))
+        B <- data.frame(x=x[[i2]],group=names(x)[i2],k=paste(names(x)[i1],names(x)[i2],sep="-",collapse=""))
+        AREA <- rbind(AREA,rbind(A,B))
+      }
+    }
+    if (!is.null(OV)){
+      for (j in 1:length(levels(AREA$k))) {
+        levels(AREA$k)[j] <- paste(levels(AREA$k)[j]," (",round(OV[grep(levels(AREA$k)[j],names(OV))]*100),"\\%)",sep="")    
+      }
+    }
+    ggplot(AREA,aes(x=x))+facet_wrap(~k)+geom_density(aes(fill=AREA$group),alpha=.35)+xlab("")+theme(legend.title=element_blank()) 
+  } else {
+    warning("package ggplot2 is missing.")
   }
-  
-  xyplot(y~x|factor(k),data=DD,groups=DD$j,panel=function(...){
-    panel.xyplot(...,type="l")
-    panel.polygon(xx[[index[packet.number()]]],yy[[index[packet.number()]]],col="#74d600",border="#74d600")
-    panel.text(min(DD$x),max(DD$y),
-               paste("overlap = ",round(OV[index[packet.number()]]*100,2),"%",sep=""),pos=4)
-  },xlab="",ylab="")
 }
+
+#final.plot(x,OV)
+#overlap(x,partial.plot=TRUE,plot=TRUE)
+

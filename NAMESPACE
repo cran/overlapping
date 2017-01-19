@@ -1,4 +1,4 @@
 importFrom("graphics", "abline", "lines", "points", "text")
 importFrom("stats", "density")
 exportPattern("^[[:alpha:]]+")
-import(lattice)
+import(ggplot2)
