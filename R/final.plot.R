@@ -20,7 +20,7 @@ final.plot <- function(x,OV=NULL) {
     }
     if (!is.null(OV)){
       for (j in 1:length(levels(AREA$k))) {
-        levels(AREA$k)[j] <- paste(levels(AREA$k)[j]," (",round(OV[grep(levels(AREA$k)[j],names(OV))]*100),"\\%)",sep="")    
+        levels(AREA$k)[j] <- paste(levels(AREA$k)[j]," (ov. perc. ",round(OV[grep(levels(AREA$k)[j],names(OV),fixed=TRUE)]*100),")",sep="")    
       }
     }
     ggplot(AREA,aes(x=x))+facet_wrap(~k)+geom_density(aes(fill=AREA$group),alpha=.35)+xlab("")+theme(legend.title=element_blank()) 
