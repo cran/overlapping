@@ -8,7 +8,6 @@ Numerical conversion
 It divides a numerical variable \code{x} in classes, and returns for each class the central value.
 
 Internal function, generally not to be called by the user.
-%Divide una variabile \code{x} in intervalli ed assegna a ciascuno di essi il valore centrale dell'intervallo. 
 }
 \usage{
 cutnumeric(x, n = 1000)
@@ -19,8 +18,7 @@ cutnumeric(x, n = 1000)
   \item{n}{number of classes}
 }
 \details{
-It calls the \code{cut} function, and then converts factor classess in numeric classes, returning for each class its central value. 
-%e quindi converte le classi ottenute (di tipo factor) in classi numeriche assegnando il valore centrale dell'intervallo. 
+It calls the \code{cut} function, and then converts factor classes in numeric classes, returning for each class its central value. 
 }
 \value{
 It returns a numerical vector. The values are the central points of classes obtained by the function \code{cut}.
@@ -31,9 +29,9 @@ It returns a numerical vector. The values are the central points of classes obta
 \author{
 Massimiliano Pastore
 }
-\note{
-This function is called from the function \code{\link{overlap}}.
-}
+%\note{
+%This function is called from the function \code{\link{overlap}}.
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
