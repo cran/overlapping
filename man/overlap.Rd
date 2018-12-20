@@ -41,9 +41,10 @@ It returns a list containing the following components:
   \item{xpoints }{List of abscissas of intersection points among the density curves.}
 %% ...
 }
-%\references{
-%% ~put references to the literature/web site here ~
-%}
+\references{
+Pastore, M. (2018). Overlapping: a R package for Estimating Overlapping in Empirical Distributions. The Journal of Open Source Software, 3 (32), 1023.
+        URL: \url{https://doi.org/10.21105/joss.01023}
+}
 \author{
 Massimiliano Pastore
 }

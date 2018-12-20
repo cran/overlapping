@@ -1,12 +1,13 @@
-79363f0f40c5e0b45ef69feea6c970ae *DESCRIPTION
+4123cc5cf3cc0634ac49e9a33cf69e8d *DESCRIPTION
 09847a475409e6159db75ea815df149d *NAMESPACE
-8234de3800490f0b58f7608ae9525822 *NEWS
+ef1ac72d28a508484cba90ebcc8d171a *NEWS
 3eee7053a23bf8b0945d6c27bb98ae1f *R/cutnumeric.R
 fda9dfd14b353948f1c7256bbbef1fdd *R/final.plot.R
 e350cffeb76f4483d922a924fc2a5c1b *R/overlap.R
+bf5ce0adda1b2892d46f10fe24471c5b *inst/CITATION
 ab429305d23add21f135554f212b1230 *man/cutnumeric.Rd
 1d2f8d0f494fda2f987fb844c4f1b83c *man/final.plot.Rd
-9052fd0e8764c0691089df19fab010b1 *man/overlap.Rd
+a420dc64054633766b8c532aa1a152e7 *man/overlap.Rd
 e047d1f6ec977ed7acdfb66954384b15 *tests/testthat.R
 6939f9e4749560adeee9bc5e77be30f0 *tests/testthat/test-cutnumeric.R
 40c36c9f0be956b8aa340f3183ca7cd6 *tests/testthat/test-overlap.R
