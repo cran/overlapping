@@ -8,7 +8,8 @@
 #' @param ... options see function density 
 #' 
 overlap <- function(x, nbins = 1024, plot = FALSE, 
-                    partial.plot = FALSE, boundaries = NULL, ... ) {
+                    partial.plot = FALSE, boundaries = NULL, 
+                    return.complete.data = FALSE, ... ) {
 
   if (is.null(names(x))) names(x) <- paste("Y", 1:length(x), sep = "")
   dd <- OV <- FUNC <- DD <- xpoints <- COMPTITLE <- NULL
@@ -75,7 +76,14 @@ overlap <- function(x, nbins = 1024, plot = FALSE,
   
   names(xpoints) <- names(OV) <- COMPTITLE
   if (plot) print( final.plot(x,OV) )
-  return(list(DD=DD,OV= OV,xpoints= xpoints))
+  
+  if (return.complete.data) {
+    return(list(DD=DD,OV= OV,xpoints= xpoints))  
+  } else {
+    return(list(OV= OV,xpoints= xpoints))  
+  }
+  
 }
 
+#source('~/lavori/Rdevel/overlapping_1.7/R/final.plot.R', echo=TRUE)
 #overlap(x,plot = TRUE)

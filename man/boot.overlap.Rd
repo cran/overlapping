@@ -28,16 +28,17 @@ It returns a list containing the following components:
   \item{OVboot_dist }{Matrix \eqn{B \times q}, \code{B} rows (bootstrap replicates) and \eqn{q} columns (depending on the number of elements of \code{x}); each column is a boostrap distribution of an overlapping index. }
 }
 \references{
-Pastore, M. (2018). Overlapping: a R package for Estimating Overlapping in Empirical Distributions. The Journal of Open Source Software, 3 (32), 1023.
-        URL: \url{https://doi.org/10.21105/joss.01023}
+Pastore, M. (2018). Overlapping: a R package for Estimating Overlapping in Empirical Distributions. The Journal of Open Source Software, 3 (32), 1023. \doi{https://doi.org/10.21105/joss.01023}
 
-Pastore, M., Calcagnì, A. (2019). Measuring Distribution Similarities Between Samples: A Distribution-Free Overlapping Index. Frontiers in Psychology, 10:1089. URL: \url{https://doi.org/10.3389/fpsyg.2019.01089}
+Pastore, M., Calcagnì, A. (2019). Measuring Distribution Similarities Between Samples: A Distribution-Free Overlapping Index. Frontiers in Psychology, 10:1089. \doi{https://doi.org/10.3389/fpsyg.2019.01089}
 }
 \author{
 Massimiliano Pastore
 }
 \note{
 Call function \code{\link{overlap}}.
+
+Thanks to Jeremy Vollen for suggestions.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

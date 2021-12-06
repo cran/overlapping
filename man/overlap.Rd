@@ -9,7 +9,8 @@ It gives the overlapped estimated area of two or more kernel density estimations
 }
 \usage{
 overlap( x, nbins = 1024, plot = FALSE, 
-    partial.plot = FALSE, boundaries = NULL, ... )
+    partial.plot = FALSE, boundaries = NULL, 
+    return.complete.data = FALSE, ... )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,6 +19,7 @@ overlap( x, nbins = 1024, plot = FALSE,
   \item{plot}{logical, if \code{TRUE}, final plot of estimated densities and overlapped areas is produced}
   \item{partial.plot}{logical, if \code{TRUE}, partial paired distributions are plotted}
   \item{boundaries}{an optional list for bounded distributions, see Details}
+  \item{return.complete.data}{logical, if \code{TRUE}, return a data frame with information used for computing overlapping (see Value).}
   \item{...}{optional arguments to be passed to function \code{\link{density}}}
 }
 \details{
@@ -30,7 +32,7 @@ The optional list \code{boundaries} must contain two elements: \code{from} and \
 }
 \value{
 It returns a list containing the following components:
-  \item{DD }{Data frame with information used for computing overlapping, containing the following variables: 
+  \item{DD }{Data frame with information used for computing overlapping, containing the following variables (only if \code{return.complete.data = TRUE}): 
   \code{x}, coordinates of the points where the density is estimated;
   \code{y1} and \code{y2}, densities;
   \code{ovy}, density for estimating overlapping area (i.e. \code{min(y1,y2)});
@@ -42,10 +44,9 @@ It returns a list containing the following components:
 %% ...
 }
 \references{
-Pastore, M. (2018). Overlapping: a R package for Estimating Overlapping in Empirical Distributions. The Journal of Open Source Software, 3 (32), 1023.
-        URL: \url{https://doi.org/10.21105/joss.01023}
+Pastore, M. (2018). Overlapping: a R package for Estimating Overlapping in Empirical Distributions. The Journal of Open Source Software, 3 (32), 1023. \doi{https://doi.org/10.21105/joss.01023}
         
-Pastore, M., Calcagnì, A. (2019). Measuring Distribution Similarities Between Samples: A Distribution-Free Overlapping Index. Frontiers in Psychology, 10:1089. URL: \url{https://doi.org/10.3389/fpsyg.2019.01089}
+Pastore, M., Calcagnì, A. (2019). Measuring Distribution Similarities Between Samples: A Distribution-Free Overlapping Index. Frontiers in Psychology, 10:1089. \doi{https://doi.org/10.3389/fpsyg.2019.01089}
 }
 \author{
 Massimiliano Pastore

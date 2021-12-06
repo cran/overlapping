@@ -5,7 +5,7 @@
 #OV <- out$OV
 final.plot <- function(x, OV = NULL ) {
   
-    AREA <- NULL
+    AREA <- group <- NULL
     for (i1 in 1:(length(x) - 1)) {
       for (i2 in (i1 + 1):(length(x))) {
         A <- data.frame(x = x[[i1]],
@@ -24,17 +24,12 @@ final.plot <- function(x, OV = NULL ) {
       
       OV <- data.frame(OV=OV,k=names(OV))
       AREA <- merge(AREA,OV,by="k")
-      AREA$k <- paste0(AREA$k," (ov. perc. ",round(AREA$OV*100),")")
+      AREA$k <- paste0(AREA$k," (eta = ",round(AREA$OV,2),")")
       
-#      for (j in 1:length(levels(AREA$k))) {
-#        levels(AREA$k)[j] <- paste(levels(AREA$k)[j], " (ov. perc. ",
-#                                   round(OV[grep(levels(AREA$k)[j],
-#                                                 names(OV), fixed = TRUE)]*100), ")", sep = "")    
-#      }
     }
-    ggplot(AREA, aes(x = x)) +
+    ggplot(AREA, aes(x = x, fill = group)) +
       facet_wrap(~k) +
-      geom_density(aes(fill = AREA$group), alpha = .35) +
+      geom_density( alpha = .35) +
       xlab("") + theme(legend.title = element_blank()) 
 }
 
