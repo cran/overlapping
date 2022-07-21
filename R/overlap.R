@@ -45,18 +45,21 @@ overlap <- function(x, nbins = 1024, plot = FALSE,
   
   for (i1 in 1:(length(x)-1)) {
     for (i2 in (i1+1):(length(x))) {
-      comptitle <- paste0(names(x)[i1],"-",names(x)[i2])
+      comptitle <- paste0(names(x)[i1], "-", names(x)[i2])
       
-      dd2 <- data.frame(x=dd$x,y1=FUNC[[i1]](dd$x),y2=FUNC[[i2]](dd$x))    
+      dsubset <- dd[which( (dd$j == names(x)[i1]) | (dd$j == names(x)[i2])  ),] 
+      
+      dd2 <- data.frame(x = sort(unique(dsubset$x)))
+      dd2$y1 = FUNC[[i1]](dd2$x)
+      dd2$y2 = FUNC[[i2]](dd2$x)
       dd2[is.na(dd2)] <- 0
-      dd2$ovy <- apply(dd2[,c("y1","y2")],1,min)
-      dd2$ally <- apply(dd2[,c("y1","y2")],1,max,na.rm=TRUE)
-      dd2$dominance <- ifelse(dd2$y1>dd2$y2,1,2)
+      
+      dd2$ovy <- apply(dd2[, c("y1", "y2")], 1, min)
+      dd2$ally <- apply(dd2[, c("y1", "y2")], 1, max)
+      dd2$dominance <- ifelse(dd2$y1 > dd2$y2, 1, 2)
       dd2$k <- comptitle
-      
-      OV <- c(OV,sum(dd2$ovy,na.rm = TRUE) / sum(dd2$ally,na.rm = TRUE))
-      
-      dd2 <- dd2[order(dd2$x),]
+      OV <- c(OV, sum(dd2$ovy)/sum(dd2$ally))
+
       CHANGE <- dd2$x[which(dd2$dominance[2:nrow(dd2)]!=dd2$dominance[1:(nrow(dd2)-1)])]
       xpoints <- c(xpoints,list(CHANGE))
       
@@ -64,7 +67,8 @@ overlap <- function(x, nbins = 1024, plot = FALSE,
         gg <- ggplot(dd2,aes(x,dd2$y1))+theme_bw()+
           geom_vline(xintercept = CHANGE,lty=2,color="#cccccc")+
           geom_line()+geom_line(aes(x,dd2$y2))+
-          geom_line(aes(x,dd2$ovy),color="red")+geom_line(aes(x,dd2$ally),color="blue")+
+          geom_line(aes(x,dd2$ovy),color="red")+
+          geom_line(aes(x,dd2$ally),color="blue")+
           ggtitle(comptitle)+xlab("")+ylab("")+
           theme(plot.title = element_text(hjust=.5))
         print(gg)
