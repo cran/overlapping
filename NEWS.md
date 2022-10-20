@@ -1,3 +1,9 @@
+# VERSION 2
+
+  - added function ovmult for computing also multiple overlapping
+  - updated function overlap
+  - updated function final.plot
+
 # VERSION 1.8
 
   - fixed a bug in function overlap 
