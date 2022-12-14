@@ -1,5 +1,8 @@
-boot.overlap <- function (x, B = 1000, pairsOverlap = TRUE, ...)
+boot.overlap <- function (x, B = 1000, pairsOverlap = FALSE, ...)
 {
+  
+  # control 
+  if (length(x) == 2 & pairsOverlap == TRUE) pairsOverlap <- FALSE
   
   out <- overlap(x, ...)
   

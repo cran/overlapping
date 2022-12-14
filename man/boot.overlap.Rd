@@ -8,13 +8,13 @@ Nonparametric Bootstrap to estimate the overlapping area
 Resampling via non-parametric bootstrap to estimate the overlapping area between two or more kernel density estimations from empirical data.
 }
 \usage{
-boot.overlap( x, B = 1000, pairsOverlap = TRUE, ... )
+boot.overlap( x, B = 1000, pairsOverlap = FALSE, ... )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a list of numerical vectors to be compared (each vector is an element of the list).}
   \item{B}{integer, number of bootstrap draws.}
-  \item{pairsOverlap}{logical, if \code{TRUE} (the default) returns the overlapped area relative to each pair of distributions.}
+  \item{pairsOverlap}{logical, if \code{TRUE}, available only when the list \code{x} contains more than two elements, it returns the overlapped area relative to each pair of distributions. }
   \item{...}{options, see function \code{\link{overlap}} for details.}
 }
 \details{
