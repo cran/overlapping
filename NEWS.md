@@ -1,8 +1,15 @@
+# overlapping 2.2 
+
+### Features
+
+- added function `perm.test()` for performing permutation test   
+
 # overlapping 2.1 
 
 ### Bug fixes 
 
-- fixed a bug in function `boot.overlap()` - thanks to TCM.  
+- fixed a bug in function `boot.overlap()` - thanks to TCM. 
+
 
 # overlapping 2.0   
 
