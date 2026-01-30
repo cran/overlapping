@@ -1,3 +1,9 @@
+# overlapping 2.3 
+
+### Features
+
+- fixed a bug in  function `boot.overlap()`    
+
 # overlapping 2.2 
 
 ### Features

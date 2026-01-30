@@ -45,7 +45,7 @@ Called from the function \code{\link{overlap}}.
 set.seed(20150605)
 x <- list(X1=rnorm(100), X2=rt(50,8), X3=rchisq(80,2))
 ovmult(x)
-ovmult(x, normalized = TRUE)
+ovmult(x, type = "2" )
 
 # including boundaries
 x <- list(X1=runif(100), X2=runif(100,.5,1))
