@@ -17,6 +17,9 @@ ovmult <- function(x, nbins = 1024, type = c( "1", "2" ), boundaries = NULL, get
   # controls
   type <- match.arg(type)
   
+  # check missing
+  x <- check.missing( x )
+  
   if (is.null(boundaries)) {
     boundaries <- range(unlist(x))
     from <- boundaries[1]
